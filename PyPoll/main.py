@@ -17,7 +17,6 @@ with open(csvpath) as csvfile:
     #print(f"{csv_header}")
     
     for row in csvreader:
-        print(row)
     #The total number of votes cast +1
         total_votes += 1
 
@@ -26,21 +25,21 @@ with open(csvpath) as csvfile:
             votes[row[2]] += 1
         else:
             votes[row[2]] = 1
-    #A complete list of candidates who received votes
-    
-print(votes.keys())
 
+#Iterate through the dict of candidates, and append output string with the following:
+#A complete list of candidates who received votes   
 #The percentage of votes each candidate won
-
-
 #The total number of votes each candidate won
+#The winner of the election based on popular vote
+output = f"Election Results\n----------------------------\nTotal Votes: {total_votes}"    
 
-
-#The winner of the election based on popular vote. 
+for candidate in votes.keys():
+    output = f"{output}\n{candidate}: {(votes[candidate])/total_votes:.3f}% ({votes[candidate]})"
+    
+print(output)
+ 
 #get the max value from list of votes
 
-#output = f"Election Results\n----------------------------\nTotal Votes: {total_votes}"
-#loop through dict to add each candidate's name and votecount be appended to the output string
 #output += \n----------------------------\Winner: {max value from dict}
 #print(output)
 
