@@ -3,6 +3,7 @@ import os
 import csv
 
 total_votes = 0
+votes = {}
 
 print(os.getcwd())
 # create filepath for budget data file and read csv file
@@ -16,12 +17,18 @@ with open(csvpath) as csvfile:
     #print(f"{csv_header}")
     
     for row in csvreader:
-
+        print(row)
     #The total number of votes cast +1
-    total_votes += 1
+        total_votes += 1
 
-#A complete list of candidates who received votes
-
+    #will check on each iteration if the name voted for is on the dict so far, and if not add it, if so +=1 votecount
+        if (row[2] in votes):
+            votes[row[2]] += 1
+        else:
+            votes[row[2]] = 1
+    #A complete list of candidates who received votes
+    
+print(votes.keys())
 
 #The percentage of votes each candidate won
 
@@ -30,8 +37,11 @@ with open(csvpath) as csvfile:
 
 
 #The winner of the election based on popular vote. 
- 
-#output = f"Financial Analysis\n----------------------------\nTotal Months: {total_months} \nTotal: ${abs_change}\nAverage Change: ${avg_change:.2f}\n" + max_profit_str +"\n" + max_loss_str
+#get the max value from list of votes
+
+#output = f"Election Results\n----------------------------\nTotal Votes: {total_votes}"
+#loop through dict to add each candidate's name and votecount be appended to the output string
+#output += \n----------------------------\Winner: {max value from dict}
 #print(output)
 
 #with open("Analysis\Analysis.txt", "w") as datafile:
