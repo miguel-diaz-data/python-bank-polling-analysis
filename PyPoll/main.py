@@ -1,4 +1,3 @@
-#using pybank as refrence code
 import os
 import csv
 
@@ -14,7 +13,7 @@ with open(csvpath) as csvfile:
     csvreader = csv.reader(csvfile, delimiter=",")
 
     csv_header = next(csvfile)
-    #checked if first row was iterated through properly as header isn't part of data
+    #check if first row was iterated through properly as header isn't part of data
     #print(f"{csv_header}")
     
     for row in csvreader:
@@ -29,7 +28,8 @@ with open(csvpath) as csvfile:
 
 #first line of output string
 
-output = f"Election Results\n----------------------------\nTotal Votes: {total_votes}"    
+output = f"Election Results\n----------------------------\nTotal Votes: {total_votes}\n----------------------------"   
+
 #Iterate through the dict of candidates, start \n and append output string with the following:
 #List of candidates who received votes   
 #The percentage of votes each candidate won
