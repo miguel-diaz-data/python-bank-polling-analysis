@@ -17,12 +17,13 @@ with open(csvpath) as csvfile:
     csvreader = csv.reader(csvfile, delimiter=",")
 
     csv_header = next(csvfile)
-    print(f"{csv_header}")
     #checked if first row was iterated through properly as header isn't part of data
-
+    #print(f"{csv_header}")
+   
     for row in csvreader:
     #Counts the total number of months included in the dataset
         total_months += 1
+
         delta = int(row[1])
     #Uses current row value to update total amount of "Profit/Losses" over the entire period
 
@@ -43,9 +44,11 @@ with open(csvpath) as csvfile:
 
 avg_change = net_change/total_months
  
-print(f"{total_months}, {abs_change}, {avg_change}")
-print(max_loss_str +"\n" + max_profit_str)
+output = f"Financial Analysis\n----------------------------\nTotal Months: {total_months} \nTotal: ${abs_change}\nAverage Change: ${avg_change:.2f}\n" + max_profit_str +"\n" + max_loss_str
+print(output)
 
+with open("Analysis\Analysis.txt", "w") as datafile:
+    datafile.write(output)
 
-
+    
 
