@@ -44,7 +44,7 @@ with open(csvpath) as csvfile:
 avg_change = net_change/total_months
  
 print(f"{total_months}, {abs_change}, {avg_change}")
-print(max_loss_str + max_profit_str)
+print(max_loss_str +"\n" + max_profit_str)
 
 
 
