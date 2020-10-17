@@ -47,7 +47,7 @@ for candidate in votes.keys():
 output = f"{output}\n----------------------------\nWinner: {leader}\n----------------------------"
 print(output)
 
-with open("Analysis\Analysis.txt", "w") as datafile:
+with open("Analysis\\Analysis.txt", "w") as datafile:
     datafile.write(output)
 
     
