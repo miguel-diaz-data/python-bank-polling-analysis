@@ -39,7 +39,7 @@ for candidate in votes.keys():
     output = f"{output}\n{candidate}: {(votes[candidate])/total_votes *100:.3f}% ({votes[candidate]})"
     
     #check if name of candidate is max value of votes
-    if votes[candidate]>top_votes:
+    if votes[candidate] > top_votes:
         leader = candidate
         top_votes = votes[candidate]
 
@@ -48,6 +48,4 @@ output = f"{output}\n----------------------------\nWinner: {leader}\n-----------
 print(output)
 
 with open("Analysis\\Analysis.txt", "w") as datafile:
-    datafile.write(output)
-
-    
+    datafile.write(output)   
