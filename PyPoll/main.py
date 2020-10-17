@@ -4,8 +4,9 @@ import csv
 
 total_votes = 0
 votes = {}
+leader = ""
+top_votes = 0
 
-print(os.getcwd())
 # create filepath for budget data file and read csv file
 csvpath = os.path.join("Resources", "election_data.csv")
 
@@ -26,24 +27,27 @@ with open(csvpath) as csvfile:
         else:
             votes[row[2]] = 1
 
-#Iterate through the dict of candidates, and append output string with the following:
-#A complete list of candidates who received votes   
+#first line of output string
+
+output = f"Election Results\n----------------------------\nTotal Votes: {total_votes}"    
+#Iterate through the dict of candidates, start \n and append output string with the following:
+#List of candidates who received votes   
 #The percentage of votes each candidate won
 #The total number of votes each candidate won
-#The winner of the election based on popular vote
-output = f"Election Results\n----------------------------\nTotal Votes: {total_votes}"    
 
 for candidate in votes.keys():
-    output = f"{output}\n{candidate}: {(votes[candidate])/total_votes:.3f}% ({votes[candidate]})"
+    output = f"{output}\n{candidate}: {(votes[candidate])/total_votes *100:.3f}% ({votes[candidate]})"
     
+    #check if name of candidate is max value of votes
+    if votes[candidate]>top_votes:
+        leader = candidate
+        top_votes = votes[candidate]
+
+#The winner of the election based on popular vote
+output = f"{output}\n----------------------------\nWinner: {leader}\n----------------------------"
 print(output)
- 
-#get the max value from list of votes
 
-#output += \n----------------------------\Winner: {max value from dict}
-#print(output)
-
-#with open("Analysis\Analysis.txt", "w") as datafile:
-    #datafile.write(output)
+with open("Analysis\Analysis.txt", "w") as datafile:
+    datafile.write(output)
 
     
