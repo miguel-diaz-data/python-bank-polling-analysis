@@ -5,6 +5,10 @@ total_months = 0
 delta = 0
 abs_change = 0
 net_change = 0
+max_loss = 0
+max_loss_str = ""
+max_profit = 0 
+max_profit_str = ""
 
 # create filepath for budget data file and read csv file
 csvpath = os.path.join("Resources", "budget_data.csv")
@@ -17,22 +21,30 @@ with open(csvpath) as csvfile:
     #checked if first row was iterated through properly as header isn't part of data
 
     for row in csvreader:
-#The total number of months included in the dataset
+    #Counts the total number of months included in the dataset
         total_months += 1
-#The net total amount of "Profit/Losses" over the entire period
         delta = int(row[1])
+    #Uses current row value to update total amount of "Profit/Losses" over the entire period
 
         abs_change += abs(delta)
 
-#The average of the changes in "Profit/Losses" over the entire period
+    #Uses current row value to update the net change needed to calculate the average change
         net_change += delta
-
         
+    #checks if current row has max/min value so far
+    #also update the str with the required output
+        if int(row[1]) > max_profit:
+            max_profit = int(row[1])
+            max_profit_str = f"Greatest Increase in Profits: {row[0]} (${row[1]})"
+        elif int(row[1]) < max_loss:
+            max_loss = int(row[1])
+            max_loss_str = f"Greatest Decrease in Profits: {row[0]} (${row[1]})"
+
+
 avg_change = net_change/total_months
-#The greatest increase in profits (date and amount) over the entire period
-#The greatest decrease in losses (date and amount) over the entire period
-#can be done by keeping a running min and max variable and comparing it with the current one. 
+ 
 print(f"{total_months}, {abs_change}, {avg_change}")
+print(max_loss_str + max_profit_str)
 
 
 
